@@ -127,7 +127,53 @@ int main() {
         cout << "\nVyhral jsi prvni souboj!\n";
     }
 
-    cout << "\nDiky za hrani!\n";
-
     return 0;
 }
+    if (hrac.classy.zivoty > 0) {
+        cout << "\nPo prvnim souboji pokracujes dal...\n";
+
+        // Souboj se dvema prisery
+        Prisera kostlivec1 = {"Kostlivec A", 3, 2};
+        Prisera kostlivec2 = {"Kostlivec B", 3, 2};
+
+        cout << "\nZ utrob se vynorili DVA kostlivci!\n";
+        cout << "Priprav se na boj proti obema zaraz!\n";
+
+        while (hrac.classy.zivoty > 0 && (kostlivec1.zivoty > 0 || kostlivec2.zivoty > 0)) {
+            cout << "\nTvoje zivoty: " << hrac.classy.zivoty << endl;
+            cout << "Kostlivec A: " << kostlivec1.zivoty << "  |  Kostlivec B: " << kostlivec2.zivoty << endl;
+
+            cout << "\nZvol, na koho chces utocit (a / b): ";
+            string cil;
+            cin >> cil;
+
+            if (cil == "a" && kostlivec1.zivoty > 0) {
+                kostlivec1.zivoty -= hrac.classy.utok;
+                cout << "Zasahl jsi Kostlivce A za " << hrac.classy.utok << " poskozeni.\n";
+            } else if (cil == "b" && kostlivec2.zivoty > 0) {
+                kostlivec2.zivoty -= hrac.classy.utok;
+                cout << "Zasahl jsi Kostlivce B za " << hrac.classy.utok << " poskozeni.\n";
+            } else {
+                cout << "Spatny cil nebo je uz mrtvy.\n";
+            }
+
+            // Kostlivec A utoci
+            if (kostlivec1.zivoty > 0) {
+                hrac.classy.zivoty -= kostlivec1.utok;
+                cout << "Kostlivec A te zasahl za " << kostlivec1.utok << " poskozeni.\n";
+            }
+
+            // Kostlivec B utoci
+            if (kostlivec2.zivoty > 0) {
+                hrac.classy.zivoty -= kostlivec2.utok;
+                cout << "Kostlivec B te zasahl za " << kostlivec2.utok << " poskozeni.\n";
+            }
+
+            if (hrac.classy.zivoty <= 0) {
+                cout << "Byl jsi porazen...\n";
+                return 0;
+            }
+        }
+
+        cout << "\nZvitezil jsi nad obema kostlivci!\n";
+    }
