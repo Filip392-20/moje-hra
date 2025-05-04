@@ -215,7 +215,68 @@ int main() {
 
         // >>> Tady spravne zavolame vesnici
         vesnice(hrac);
+       // Pokracovani po vesnici - cesta do temneho lesa
+    cout << "\nPo odpocinku ve vesnici se vydavas do temneho lesa...\n";
+    cout << "Les je plny nebezpeci, ale take pokladu.\n";
+
+    // Tri nepratele najednou
+    Prisera elf = {"Temny Elf", 4, 2};
+    Prisera pavouk = {"Zmutovany Pavouk", 5, 3};
+    Prisera stin = {"Stin", 6, 2};
+
+    cout << "\nNarazil jsi na tri nepratele!\n";
+    cout << elf.jmeno << ", " << pavouk.jmeno << " a " << stin.jmeno << "!\n";
+
+    // Souboj
+    while (hrac.classy.zivoty > 0 && (elf.zivoty > 0 || pavouk.zivoty > 0 || stin.zivoty > 0)) {
+        cout << "\nTvoje zivoty: " << hrac.classy.zivoty << endl;
+        cout << elf.jmeno << ": " << elf.zivoty << " | ";
+        cout << pavouk.jmeno << ": " << pavouk.zivoty << " | ";
+        cout << stin.jmeno << ": " << stin.zivoty << endl;
+
+        cout << "\nZvol, na koho chces utocit (e = elf, p = pavouk, s = stin): ";
+        string cil;
+        cin >> cil;
+
+        if (cil == "e" && elf.zivoty > 0) {
+            elf.zivoty -= hrac.classy.utok;
+            cout << "Zasahl jsi " << elf.jmeno << " za " << hrac.classy.utok << " poskozeni.\n";
+        } else if (cil == "p" && pavouk.zivoty > 0) {
+            pavouk.zivoty -= hrac.classy.utok;
+            cout << "Zasahl jsi " << pavouk.jmeno << " za " << hrac.classy.utok << " poskozeni.\n";
+        } else if (cil == "s" && stin.zivoty > 0) {
+            stin.zivoty -= hrac.classy.utok;
+            cout << "Zasahl jsi " << stin.jmeno << " za " << hrac.classy.utok << " poskozeni.\n";
+        } else {
+            cout << "Spatny cil nebo uz je porazen.\n";
+        }
+
+        // Utok nepratel
+        if (elf.zivoty > 0) {
+            hrac.classy.zivoty -= elf.utok;
+            cout << elf.jmeno << " te zasahl za " << elf.utok << " poskozeni.\n";
+        }
+        if (pavouk.zivoty > 0) {
+            hrac.classy.zivoty -= pavouk.utok;
+            cout << pavouk.jmeno << " te kousl za " << pavouk.utok << " poskozeni.\n";
+        }
+        if (stin.zivoty > 0) {
+            hrac.classy.zivoty -= stin.utok;
+            cout << stin.jmeno << " ti ubral " << stin.utok << " stinove poskozeni.\n";
+        }
+
+        if (hrac.classy.zivoty <= 0) {
+            cout << "Byl jsi porazen temnymi silami lesa...\n";
+            return 0;
+        }
     }
+
+    cout << "\nZvitezil jsi nad neprateli z temneho lesa!\n";
+    hrac.zlato += 15;
+    cout << "Ziskal jsi 15 zlata. Mas ted " << hrac.zlato << " zlata.\n";
+    cout << "Pokracovani priste...\n";
+
+   }
 
     cout << "\nDiky za hrani!\n";
     return 0;
