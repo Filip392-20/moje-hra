@@ -130,14 +130,14 @@ int main() {
 
     // Prvni souboj
     Prisera goblin;
-    goblin.jmeno = "Goblin";
+    goblin.jmeno = "Alfredo";
     goblin.zivoty = 4;
     goblin.utok = 2;
 
-    cout << "\nNarazil jsi na prisera: " << goblin.jmeno << "!\n";
+    cout << "\nNarazil jsi na goblina: " << goblin.jmeno << "\n";
     cout << "Zacina boj!\n";
 
-    cin.ignore(); // opravuje problém se stiskem enteru
+    cin.ignore();
 
     while (hrac.classy.zivoty > 0 && goblin.zivoty > 0) {
         cout << "\nTvoje zivoty: " << hrac.classy.zivoty;
@@ -171,15 +171,15 @@ int main() {
     if (hrac.classy.zivoty > 0) {
         cout << "\nPo prvnim souboji pokracujes dal...\n";
 
-        Prisera kostlivec1 = {"Kostlivec A", 3, 2};
-        Prisera kostlivec2 = {"Kostlivec B", 3, 2};
+        Prisera kostlivec1 = {"bob", 3, 2};
+        Prisera kostlivec2 = {"smrtak", 3, 2};
 
         cout << "\nZ utrob se vynorili 2 kostlivci!\n";
         cout << "Priprav se na boj proti obema zaraz!\n";
 
         while (hrac.classy.zivoty > 0 && (kostlivec1.zivoty > 0 || kostlivec2.zivoty > 0)) {
             cout << "\nTvoje zivoty: " << hrac.classy.zivoty << endl;
-            cout << "Kostlivec A: " << kostlivec1.zivoty << "  |  Kostlivec B: " << kostlivec2.zivoty << endl;
+            cout << "bob: " << kostlivec1.zivoty << "  |  smrtak: " << kostlivec2.zivoty << endl;
 
             cout << "\nZvol, na koho chces utocit (a / b): ";
             string cil;
@@ -187,22 +187,22 @@ int main() {
 
             if (cil == "a" && kostlivec1.zivoty > 0) {
                 kostlivec1.zivoty -= hrac.classy.utok;
-                cout << "Zasahl jsi Kostlivce A za " << hrac.classy.utok << " poskozeni.\n";
+                cout << "Zasahl jsi boba za " << hrac.classy.utok << " poskozeni.\n";
             } else if (cil == "b" && kostlivec2.zivoty > 0) {
                 kostlivec2.zivoty -= hrac.classy.utok;
-                cout << "Zasahl jsi Kostlivce B za " << hrac.classy.utok << " poskozeni.\n";
+                cout << "Zasahl jsi smrtaka za " << hrac.classy.utok << " poskozeni.\n";
             } else {
                 cout << "Spatny cil nebo uz mrtvy.\n";
             }
 
             if (kostlivec1.zivoty > 0) {
                 hrac.classy.zivoty -= kostlivec1.utok;
-                cout << "Kostlivec A te zasahl za " << kostlivec1.utok << " poskozeni.\n";
+                cout << "bob te zasahl za " << kostlivec1.utok << " poskozeni.\n";
             }
 
             if (kostlivec2.zivoty > 0) {
                 hrac.classy.zivoty -= kostlivec2.utok;
-                cout << "Kostlivec B te zasahl za " << kostlivec2.utok << " poskozeni.\n";
+                cout << "smrtak te zasahl za " << kostlivec2.utok << " poskozeni.\n";
             }
 
             if (hrac.classy.zivoty <= 0) {
@@ -213,16 +213,13 @@ int main() {
 
         cout << "\nZvitezil jsi nad obema kostlivci!\n";
 
-        // >>> Tady spravne zavolame vesnici
         vesnice(hrac);
-       // Pokracovani po vesnici - cesta do temneho lesa
     cout << "\nPo odpocinku ve vesnici se vydavas do temneho lesa...\n";
     cout << "Les je plny nebezpeci, ale take pokladu.\n";
 
-    // Tri nepratele najednou
-    Prisera elf = {"Temny Elf", 4, 2};
-    Prisera pavouk = {"Zmutovany Pavouk", 5, 3};
-    Prisera stin = {"Stin", 6, 2};
+    Prisera elf = {"Temny Elf", 2, 1};
+    Prisera pavouk = {"Zmutovany Pavouk", 3, 1};
+    Prisera stin = {"Stin", 4, 1};
 
     cout << "\nNarazil jsi na tri nepratele!\n";
     cout << elf.jmeno << ", " << pavouk.jmeno << " a " << stin.jmeno << "!\n";
@@ -281,3 +278,4 @@ int main() {
     cout << "\nDiky za hrani!\n";
     return 0;
 }
+
